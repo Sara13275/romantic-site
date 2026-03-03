@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body style="text-align:center; margin-top:100px; font-family:Arial;">
+
+    <h2>Enter Your Email 💌</h2>
+
+    <input type="email" id="email" placeholder="Enter email" />
+    <button onclick="sendEmail()">Submit</button>
+
+    <p id="response"></p>
+<script>
+    async function sendEmail() {
+        const email = document.getElementById("email").value;
+
+        console.log("Button clicked");
+        console.log("Email:", email);
+
+        const res = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await res.json();
+        console.log("Response:", data);
+
+        document.getElementById("response").innerText = data.message;
+    }
+</script>
+
+</body>
+</html>

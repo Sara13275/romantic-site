@@ -1,0 +1,302 @@
+/* ===============================
+   GLOBAL RESET
+================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+/* Utility */
+.hidden{
+    display:none;
+}
+
+/* ===============================
+   LANDING PAGE (index.html)
+================================= */
+
+.landing{
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+
+.content h1{
+    font-size:38px;
+    margin-bottom:20px;
+}
+
+.content h2{
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+.buttons{
+    position:relative;
+}
+
+.yes-btn{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+    margin-right:20px;
+}
+
+.yes-btn:hover{
+    background:#e63950;
+    transform:scale(1.05);
+}
+
+.no-btn{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    background:#444;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+/* Floating Hearts */
+
+.floating-hearts span{
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    top:100%;
+    animation: floatUp 8s infinite ease-in;
+    clip-path: polygon(50% 0%, 61% 14%, 75% 14%, 85% 25%, 85% 40%, 50% 75%, 15% 40%, 15% 25%, 25% 14%, 39% 14%);
+    opacity:0.7;
+}
+
+.floating-hearts span:nth-child(1){ left:10%; animation-delay:0s;}
+.floating-hearts span:nth-child(2){ left:20%; animation-delay:2s;}
+.floating-hearts span:nth-child(3){ left:30%; animation-delay:4s;}
+.floating-hearts span:nth-child(4){ left:40%; animation-delay:1s;}
+.floating-hearts span:nth-child(5){ left:50%; animation-delay:3s;}
+.floating-hearts span:nth-child(6){ left:60%; animation-delay:5s;}
+.floating-hearts span:nth-child(7){ left:70%; animation-delay:6s;}
+.floating-hearts span:nth-child(8){ left:80%; animation-delay:7s;}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-100vh);
+        opacity:0;
+    }
+}
+
+/* ===============================
+   BOOK PAGES (page1 – page13)
+================================= */
+
+.book-page{
+    background: linear-gradient(to bottom right, #fff5f8, #ffeef3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px;
+}
+
+.page-container{
+    max-width:700px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.page-container h1{
+    font-size:36px;
+    margin-bottom:20px;
+}
+
+.page-container p{
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+.next-btn{
+    padding:10px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff8fab;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.next-btn:hover{
+    background:#ff5d8f;
+    transform:scale(1.05);
+}
+
+/* ===============================
+   POPUP MESSAGE
+================================= */
+
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    background:white;
+    padding:20px 40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    font-size:18px;
+    z-index:1000;
+    display:none;
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* ===============================
+   PAGE 12 – BIRTHDAY REVEAL
+================================= */
+
+.birthday-title{
+    font-size:42px;
+    color:#ff4d6d;
+    animation: glowText 1.5s infinite alternate;
+}
+
+@keyframes glowText{
+    from{
+        text-shadow:0 0 5px #ff8fab;
+    }
+    to{
+        text-shadow:0 0 20px #ff4d6d;
+    }
+}
+
+/* ===============================
+   PAGE 13 – FINAL PAGE
+================================= */
+
+.final-section{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+}
+
+.final-title{
+    font-size:38px;
+    margin-bottom:30px;
+    font-family:'Brush Script MT', cursive;
+}
+
+.final-buttons{
+    position:relative;
+    height:100px;
+}
+
+.special{
+    margin-top:30px;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.ring{
+    font-size:50px;
+    margin-top:20px;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.2);
+    }
+}
+
+/* ===============================
+   ANIMATIONS
+================================= */
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ===============================
+   FOOTER
+================================= */
+
+.soft-footer{
+    position:absolute;
+    bottom:15px;
+    width:100%;
+    text-align:center;
+    font-size:14px;
+    opacity:0.7;
+}
+.card-3d{
+    padding:40px;
+    border-radius:25px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 60px rgba(255,0,100,0.3);
+    transition: transform 0.2s ease;
+    transform-style: preserve-3d;
+}
+.lights{
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveLights 20s linear infinite;
+    opacity:0.3;
+}
+
+@keyframes moveLights{
+    from{ background-position:0 0; }
+    to{ background-position:1000px 1000px; }
+}body{
+    opacity:0;
+    animation: fadePage 1s forwards;
+}
+
+@keyframes fadePage{
+    to{ opacity:1; }
+}.ring{
+    font-size:60px;
+    margin-top:20px;
+    animation: spinRing 3s linear infinite;
+}
+
+@keyframes spinRing{
+    from{ transform: rotateY(0deg); }
+    to{ transform: rotateY(360deg); }
+}

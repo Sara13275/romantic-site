@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Forever With You 🤍</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background: radial-gradient(circle at bottom, #0b1a2a 0%, #000814 70%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    animation: fadeIn 2s ease forwards;
+}
+
+/* Smooth page fade */
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+/* Stars background */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: moveStars 60s linear infinite;
+    opacity:0.4;
+}
+
+@keyframes moveStars{
+    from{background-position:0 0;}
+    to{background-position:1000px 1000px;}
+}
+
+/* Moon */
+.moon{
+    position:absolute;
+    top:80px;
+    right:120px;
+    width:120px;
+    height:120px;
+    background:radial-gradient(circle,#fff,#ddd,#bbb);
+    border-radius:50%;
+    box-shadow:0 0 40px #fff;
+}
+
+/* Glass card */
+.proposal-card{
+    position:relative;
+    padding:50px;
+    width:500px;
+    text-align:center;
+    border-radius:25px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 60px rgba(255,255,255,0.15);
+    transition:transform 0.2s ease;
+}
+
+/* 3D tilt */
+.proposal-card:hover{
+    transform:scale(1.02);
+}
+
+h1{
+    font-size:34px;
+    margin-bottom:30px;
+    letter-spacing:1px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+
+button{
+    padding:12px 30px;
+    margin:10px;
+    border:none;
+    border-radius:30px;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.yes{
+    background:#ff4d88;
+    color:white;
+}
+
+.yes:hover{
+    background:#ff1f6b;
+    transform:scale(1.1);
+}
+
+.no{
+    background:#444;
+    color:white;
+}
+
+.special{
+    margin-top:30px;
+    display:none;
+    animation: fadeIn 2s ease forwards;
+}
+
+/* Ring animation */
+.ring{
+    font-size:60px;
+    margin-top:20px;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin{
+    from{transform:rotateY(0deg);}
+    to{transform:rotateY(360deg);}
+}
+
+/* Fireworks canvas */
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+<div class="moon"></div>
+
+<div class="proposal-card">
+    <h1 id="typeText"></h1>
+
+    <div class="buttons">
+        <button class="yes" onclick="acceptLove()">Yes 🤍</button>
+        <button class="no" onmouseover="runAway(this)">No 🙈</button>
+    </div>
+
+    <div class="special" id="specialMessage">
+        <p>I choose you. Today. Tomorrow. Always. 🤍</p>
+        <div class="ring">💍</div>
+    </div>
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<audio id="music" loop>
+<source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* TYPEWRITER EFFECT */
+const text = "Will you stay with me forever? 🌙";
+let index = 0;
+function typeWriter(){
+    if(index < text.length){
+        document.getElementById("typeText").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeWriter,70);
+    }
+}
+typeWriter();
+
+/* RUNAWAY NO BUTTON */
+function runAway(btn){
+    btn.style.position="absolute";
+    btn.style.left=Math.random()*300+"px";
+    btn.style.top=Math.random()*200+"px";
+}
+
+/* YES CLICK */
+function acceptLove(){
+    document.getElementById("specialMessage").style.display="block";
+    document.getElementById("music").play();
+    startFireworks();
+}
+
+/* SIMPLE FIREWORKS */
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks(){
+    for(let i=0;i<30;i++){
+        const x = Math.random()*canvas.width;
+        const y = Math.random()*canvas.height;
+        ctx.fillStyle="hsl("+Math.random()*360+",100%,70%)";
+        ctx.beginPath();
+        ctx.arc(x,y,4,0,Math.PI*2);
+        ctx.fill();
+    }
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Heart – patluuu ❤️</title>
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:auto;
+    position:relative;
+    background: url("https://png.pngtree.com/thumb_back/fh260/background/20240716/pngtree-red-heart-background-with-hearts-image_16007990.jpg") no-repeat center center/cover;
+}
+
+/* Dark overlay */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    z-index:0;
+}
+
+/* ================= HEART SECTION ================= */
+
+.heart-section{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:60px 20px;
+}
+
+/* HEART GRID */
+.big-heart{
+    display:grid;
+    grid-template-columns: repeat(7, 110px);
+    gap:15px;
+    justify-content:center;
+}
+
+/* Hide empty cells */
+.empty{
+    visibility:hidden;
+}
+
+/* PHOTO STYLE */
+.photo{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 6px 15px rgba(255,182,193,0.4);
+    transition:0.4s;
+}
+
+.photo:hover{
+    transform:scale(1.08);
+}
+
+/* CENTER NAME */
+.center-name{
+    grid-column: 3 / span 3;
+    text-align:center;
+    font-size:38px;
+    font-weight:bold;
+    color:white;
+    align-self:center;
+}
+
+/* BUTTON */
+.next-btn{
+    margin-top:40px;
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.next-btn:hover{
+    background:#ff1e4d;
+    transform:scale(1.1);
+}
+
+/* FOOTER */
+.soft-footer{
+    text-align:center;
+    color:white;
+    padding:20px;
+    z-index:2;
+    position:relative;
+}
+
+/* FLOATING HEARTS */
+.heart{
+    position:absolute;
+    bottom:-20px;
+    width:12px;
+    height:12px;
+    background:red;
+    transform: rotate(45deg);
+    animation: floatUp 6s linear infinite;
+    opacity:0.8;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart::before{ top:-6px; left:0; }
+.heart::after{ left:-6px; top:0; }
+
+@keyframes floatUp{
+    0%{ transform:translateY(0) rotate(45deg); opacity:1; }
+    100%{ transform:translateY(-100vh) rotate(45deg); opacity:0; }
+}.lights{
+    position:fixed;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background-image: radial-gradient(white 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: moveLights 20s linear infinite;
+    opacity:0.3;
+}
+
+@keyframes moveLights{
+    from{ background-position:0 0; }
+    to{ background-position:1000px 1000px; }
+}
+
+</style>
+</head>
+
+<body>
+<div class="lights"></div>
+<div class="heart-section">
+
+    <div class="big-heart">
+
+        <!-- Row 1 -->
+        <div class="empty"></div>
+        <img src="images/stylish1.jpeg" class="photo">
+        <img src="images/pose5.jpeg" class="photo">
+        <div class="empty"></div>
+        <img src="images/pose4.jpeg" class="photo">
+        <img src="images/pose7.jpeg" class="photo">
+        <div class="empty"></div>
+
+        <!-- Row 2 -->
+        <img src="images/flower1.jpeg" class="photo">
+        <img src="images/bike2.jpeg" class="photo">
+        <img src="images/cute2.jpeg" class="photo">
+        <img src="images/habibi.jpeg" class="photo">
+        <img src="images/patluuuuu.jpeg" class="photo">
+        <img src="images/worst1.jpeg" class="photo">
+        <img src="images/stylish3.jpeg" class="photo">
+
+        <!-- Row 3 (center name row) -->
+        <div class="empty"></div>
+        <img src="images/mommy.jpeg" class="photo">
+        <div class="center-name">patluuu ❤️</div>
+        <img src="images/flower2.jpeg" class="photo">
+        <div class="empty"></div>
+
+        <!-- Row 4 -->
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <img src="images/cute3.jpeg" class="photo">
+        <img src="images/mine1.jpeg" class="photo">
+        <img src="images/pose1.jpeg" class="photo">
+        <div class="empty"></div>
+
+        <!-- Row 5 -->
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <img src="images/stylish3.jpeg" class="photo">
+        <div class="empty"></div>
+        <div class="empty"></div>
+
+        <!-- Row 6 -->
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+        <div class="empty"></div>
+
+    </div>
+
+    <button class="next-btn" onclick="goPage11()">
+        One Last Page ➜
+    </button>
+
+</div>
+
+<footer class="soft-footer">
+    Every piece of my heart belongs to you 🤍
+</footer>
+
+<script>
+
+/* Go to Page 11 */
+function goPage11(){
+    window.location.href="page11.html";
+}
+
+/* Floating hearts */
+function createHearts(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>{heart.remove();},6000);
+}
+setInterval(createHearts,400);
+
+</script>
+
+</body>
+</html>

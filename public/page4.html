@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Things I Love About You 🌸</title>
+
+    <style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    position:relative;
+    background: url("https://png.pngtree.com/thumb_back/fh260/background/20240716/pngtree-red-heart-background-with-hearts-image_16007990.jpg") no-repeat center center/cover;
+}
+
+/* Dark overlay */
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+/* ================= STRUCTURE ================= */
+
+.container{
+    position:relative;
+    z-index:2;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.glass-box{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    padding:50px 60px;
+    border-radius:20px;
+    color:white;
+    max-width:800px;
+    box-shadow:0 10px 40px rgba(0,0,0,0.5);
+    animation: fadeIn 1.5s ease forwards;
+    position:relative;
+    overflow-y:auto;
+    max-height:85vh;
+}
+
+/* Corner heart */
+.corner-heart{
+    position:absolute;
+    top:15px;
+    right:20px;
+    font-size:22px;
+    animation: heartbeat 1.2s infinite;
+}
+
+/* Text */
+.book-title{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+.romantic-text{
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:30px;
+}
+
+/* ================= PHOTO COLLAGE ================= */
+
+.photo-collage{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.collage-item img{
+    width:200px;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(255,182,193,0.4);
+    transition:0.4s;
+}
+
+.collage-item img:hover{
+    transform:scale(1.05);
+}
+
+/* ================= BUTTON ================= */
+
+.next-btn{
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    background:#ff4d6d;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.next-btn:hover{
+    background:#ff1e4d;
+    transform:scale(1.1);
+}
+
+/* ================= FLOATING HEARTS ================= */
+
+.heart{
+    position:absolute;
+    bottom:-20px;
+    width:12px;
+    height:12px;
+    background:red;
+    transform: rotate(45deg);
+    animation: floatUp 6s linear infinite;
+    opacity:0.8;
+}
+
+.heart::before,
+.heart::after{
+    content:"";
+    position:absolute;
+    width:12px;
+    height:12px;
+    background:red;
+    border-radius:50%;
+}
+
+.heart::before{ top:-6px; left:0; }
+.heart::after{ left:-6px; top:0; }
+
+@keyframes floatUp{
+    0%{ transform:translateY(0) rotate(45deg); opacity:1; }
+    100%{ transform:translateY(-100vh) rotate(45deg); opacity:0; }
+}
+
+/* ================= SPARKLES ================= */
+
+.sparkle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:white;
+    border-radius:50%;
+    opacity:0.8;
+    animation:sparkleAnim 3s linear infinite;
+}
+
+@keyframes sparkleAnim{
+    0%{ transform:translateY(0); opacity:1; }
+    100%{ transform:translateY(-100vh); opacity:0; }
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes heartbeat{
+    0%{ transform:scale(1); }
+    50%{ transform:scale(1.2); }
+    100%{ transform:scale(1); }
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(30px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+/* Footer */
+.footer{
+    position:absolute;
+    bottom:15px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:14px;
+    z-index:2;
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="glass-box">
+<div class="lights"></div>
+        <div class="corner-heart">🤍</div>
+
+        <h1 class="book-title">Things I Love About You 🌸</h1>
+
+        <p class="romantic-text">
+            I love the way you smile without even realizing it.  
+            I love your kindness, your patience, and the way you care.  
+            And most of all… I love the way you make my world feel safe.
+        </p>
+
+        <div class="photo-collage">
+
+            <div class="collage-item">
+                <img src="images/love1.jpg" alt="Memory 1">
+            </div>
+
+            <div class="collage-item">
+                <img src="images/love2.jpg" alt="Memory 2">
+            </div>
+
+            <div class="collage-item">
+                <img src="images/love3.jpg" alt="Memory 3">
+            </div>
+
+        </div>
+
+        <button class="next-btn" onclick="goPage5()">Turn the Page ➜</button>
+
+    </div>
+</div>
+
+<footer class="footer">
+    Made with love 🤍
+</footer>
+
+<script>
+
+/* Go to Page 5 */
+function goPage5(){
+    window.location.href = "page5.html";
+}
+
+/* Floating Hearts */
+function createHearts(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.animationDuration = (4 + Math.random()*4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(()=>{ heart.remove(); },6000);
+}
+setInterval(createHearts,400);
+
+/* Sparkles */
+function createSparkle(){
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
+    sparkle.style.left = Math.random() * window.innerWidth + "px";
+    sparkle.style.animationDuration = (2 + Math.random()*3) + "s";
+    document.body.appendChild(sparkle);
+    setTimeout(()=>{ sparkle.remove(); },3000);
+}
+setInterval(createSparkle,200);
+
+</script>
+
+</body>
+</html>
