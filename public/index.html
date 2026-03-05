@@ -1,35 +1,226 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Secure Love Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+
+    background-image: url("https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/4548/1734075024548-i");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+ justify-content: flex-start;  
+    display: flex;
+    padding-left: 80px;    
+    align-items: center;
+    height: 100vh;
+}
+
+/* MAIN LOGIN BOX */
+
+.heart {
+    width: 380px;
+    padding: 40px;
+
+    background: rgba(0,0,0,0.45);
+
+    backdrop-filter: blur(10px);
+
+    border-radius: 12px;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+}
+
+/* REMOVE HEART SHAPE */
+
+.heart:before,
+.heart:after {
+    display: none;
+}
+
+/* CONTENT */
+
+.heart-content {
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TITLE */
+
+h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* INPUT */
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+
+    border-radius: 8px;
+    border: none;
+
+    font-size: 14px;
+
+    background: rgba(255,255,255,0.9);
+}
+
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    cursor: pointer;
+}
+
+/* BUTTON */
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+
+    border-radius: 8px;
+    border: none;
+
+    background: #ff4d6d;
+
+    color: white;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #ff1e4d;
+}
+
+button:disabled {
+    background: #ff9ab0;
+}
+
+/* LOADER */
+
+.spinner {
+    display: none;
+    margin-top: 12px;
+
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #ff4d6d;
+
+    border-radius: 50%;
+
+    width: 24px;
+    height: 24px;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    100% { transform: rotate(360deg); }
+}
+
+/* RESPONSE */
+
+#response {
+    margin-top: 10px;
+    font-size: 13px;
+    min-height: 18px;
+}
+.character-name{
+    position: absolute;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: 2px 2px 8px black;
+}
+
+/* Motu position */
+.motu{
+    top: 90px;
+    left: 410px;
+}
+
+/* Patlu position */
+.patlu{
+    top: 5px;
+    left: 1010px;
+}
+.success { color: #00ff9d; font-weight: bold; }
+.error { color: #ff6b6b; }</style>
 </head>
-<body style="text-align:center; margin-top:100px; font-family:Arial;">
+</head>
 
-    <h2>Enter Your Email 💌</h2>
+<body>
 
-    <input type="email" id="email" placeholder="Enter email" />
-    <button onclick="sendEmail()">Submit</button>
+<div class="heart">
+    <div class="character-name motu">Motu<br>Meeee</div>
+<div class="character-name patlu">Patlu<br>Youu</div>
+    <div class="heart-content">
 
-    <p id="response"></p>
-<script>
-    async function sendEmail() {
-        const email = document.getElementById("email").value;
+        <h2>Secure Love Login ❤️</h2>
 
-        console.log("Button clicked");
-        console.log("Email:", email);
+        <input type="text" id="name" placeholder="Enter your name">
+        <input type="email" id="email" placeholder="Enter your email">
 
-        const res = await fetch("/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email })
-        });
+        <div class="password-wrapper">
+            <input type="password" id="password" placeholder="Enter secret password">
+            <span class="toggle-password" onclick="togglePassword()">👁</span>
+        </div>
 
-        const data = await res.json();
-        console.log("Response:", data);
+        <button id="loginBtn" onclick="validateAndSend()">Send</button>
 
-        document.getElementById("response").innerText = data.message;
-    }
-</script>
+        <div class="spinner" id="spinner"></div>
+        <div id="response"></div>
 
+    </div>
+</div>
+<script> 
+let wrongAttempts = 0; 
+const correctPassword = "patluu"; 
+function togglePassword() 
+{ 
+    const pass = document.getElementById("password"); 
+    pass.type = pass.type === "password" ? "text" : "password"; 
+    } 
+    async function validateAndSend() 
+    { 
+        const name = document.getElementById("name").value.trim(); 
+        const email = document.getElementById("email").value.trim(); 
+        const password = document.getElementById("password").value.trim(); 
+        const response = document.getElementById("response"); 
+        const spinner = document.getElementById("spinner"); 
+        const button = document.getElementById("loginBtn"); 
+        response.className = ""; 
+        if (!name || !email || !password) 
+        { 
+            response.innerText = "Please fill all fields 💕"; 
+            response.classList.add("error"); 
+            return; 
+            } 
+            if (password.toLowerCase() !== correctPassword.toLowerCase()) {
+                 wrongAttempts++; if (wrongAttempts === 1) {
+                     response.innerText = "Hint: When I feel loved what name i call u with?"; 
+                     } 
+                     else if (wrongAttempts === 2) 
+                     { response.innerText = "Hint: P_________"; 
+
+                     } else { response.innerText = "Hint: Pa___"; } response.classList.add("error"); return; } spinner.style.display = "block"; button.disabled = true; try { const res = await fetch("/login", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name, email }) }); await res.json(); spinner.style.display = "none"; button.disabled = false; response.innerText = "Email sent successfully 💌"; response.classList.add("success"); document.getElementById("password").value = ""; } catch (err) { spinner.style.display = "none"; button.disabled = false; response.innerText = "Server error 😢"; response.classList.add("error"); } } </script>
 </body>
 </html>
