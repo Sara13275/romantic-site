@@ -6,8 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
-
+const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -22,13 +21,15 @@ app.post("/login", async (req, res) => {
             return res.status(400).json({ message: "Email is required" });
         }
 
-        const transporter = nodemailer.createTransport({
-            service: "gmail",
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS
-            }
-        });
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
         const mailOptions = {
             from: process.env.EMAIL_USER,
@@ -70,8 +71,8 @@ app.post("/login", async (req, res) => {
 });
 const { exec } = require("child_process");
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on https://romantic-site-u9md.onrender.com/page1.html`);
 
     // Auto open Chrome (Windows)
-    exec(`start http://localhost:${PORT}`);
+    exec(`start https://romantic-site-u9md.onrender.com/page1.html`);
 });
