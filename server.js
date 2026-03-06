@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static("public"));
 
@@ -20,12 +21,16 @@ app.post("/login", async (req, res) => {
         if (!email) {
             return res.status(400).json({ message: "Email is required" });
         }
-
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
@@ -57,7 +62,7 @@ const transporter = nodemailer.createTransport({
 </div>
 `
         };
-
+console.log("Sending mail to:", email);
         await transporter.sendMail(mailOptions);
 
         res.json({ message: "Email sent successfully 🤍" });
@@ -68,5 +73,5 @@ const transporter = nodemailer.createTransport({
     }
 });
 app.listen(PORT, () => {
-    console.log(`Server running on https://romantic-site-u9md.onrender.com/page1.html`);
+    console.log(`Server running on port ${PORT}`);
 });
