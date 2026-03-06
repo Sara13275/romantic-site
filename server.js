@@ -1,10 +1,10 @@
 require("dotenv").config();
-
+const { v4: uuidv4 } = require("uuid");
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
+const userLinks = {};
 const app = express();
 const PORT = process.env.PORT || 3000;
 // Middleware
@@ -17,7 +17,11 @@ app.use(express.static("public"));
 app.post("/login", async (req, res) => {
     try {
         const { email } = req.body;
+const token = uuidv4();      // create unique link
+userLinks[token] = email;    // store token with email
 
+const secretLink =
+`https://romantic-site-u9md.onrender.com/story/${token}`;
         if (!email) {
             return res.status(400).json({ message: "Email is required" });
         }
@@ -45,7 +49,7 @@ const transporter = nodemailer.createTransport({
         I made something just for you.
         Click below to see it 🤍
     </p>
-    <a href="https://romantic-site-u9md.onrender.com/page1.html"
+    <a href="${secretLink}"
        style="display:inline-block;
               margin-top:20px;
               padding:12px 25px;
@@ -71,6 +75,17 @@ console.log("Sending mail to:", email);
         console.error(error);
         res.status(500).json({ message: "Something went wrong ❌" });
     }
+});
+app.get("/story/:token", (req, res) => {
+
+    const token = req.params.token;
+
+    if (!userLinks[token]) {
+        return res.send("Access Denied ❌");
+    }
+
+    res.sendFile(__dirname + "/public/page1.html");
+
 });
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
