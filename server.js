@@ -22,9 +22,7 @@ app.post("/login", async (req, res) => {
         }
 
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -42,7 +40,7 @@ const transporter = nodemailer.createTransport({
         I made something just for you.
         Click below to see it 🤍
     </p>
-    <a href="http://localhost:3000/page1.html"
+    <a href="https://romantic-site-u9md.onrender.com/page1.html"
        style="display:inline-block;
               margin-top:20px;
               padding:12px 25px;
@@ -69,10 +67,6 @@ const transporter = nodemailer.createTransport({
         res.status(500).json({ message: "Something went wrong ❌" });
     }
 });
-const { exec } = require("child_process");
 app.listen(PORT, () => {
     console.log(`Server running on https://romantic-site-u9md.onrender.com/page1.html`);
-
-    // Auto open Chrome (Windows)
-    exec(`start https://romantic-site-u9md.onrender.com/page1.html`);
 });
